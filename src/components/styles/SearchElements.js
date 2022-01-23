@@ -1,28 +1,29 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 //Containers
 export const Container = styled.div`
-  background: url("https://images.unsplash.com/photo-1500491460312-c32fc2dbc751?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(90deg, #754d8b 0%, #4e5992 100%);
+  font-size: 18px;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 100vh;
 `;
 export const ContainerSearch = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 200px;
   width: 100%;
-  height: 20vh;
 `;
 export const ContainerDisplay = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
+  min-height: 500px;
   width: 100%;
-  height: 80vh;
+  margin-top: 20px;
 `;
 
 //Headers
@@ -33,10 +34,17 @@ export const Header = styled.div`
   line-height: 0.2;
 `;
 export const H1 = styled.h1`
-  font-size: 30px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: "Open sans";
+  letter-spacing: 15px;
+  color: white;
 `;
 export const H2 = styled.h2`
-  font-size: 20px;
+  font-size: 1rem;
+  font-family: "Open sans";
+  letter-spacing: 3px;
+  color: white;
 `;
 
 //Search

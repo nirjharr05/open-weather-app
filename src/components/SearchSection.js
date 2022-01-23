@@ -11,15 +11,17 @@ import {
   H2,
 } from "./styles/SearchElements";
 
-import { api, curWeather } from "./api/fetchWeather";
+import { api, curWeather, forWeather } from "./api/fetchWeather";
 
 import CurrentWeather from "./CurrentWeather";
+import ForecastWeather from "./ForecastWeather";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchSection = () => {
   const [query, setQuery] = useState("Kolkata");
   const [currentWeather, setCurrentWeather] = useState({});
+  const [forecastWeather, setForecastWeather] = useState([]);
 
   //GET WEATHER
   useEffect(() => {
@@ -28,11 +30,20 @@ const SearchSection = () => {
 
   const getWeather = async (e) => {
     try {
+      //current weather
       let res1 = await fetch(
         `${api.base}weather?q=${query}&appid=${api.key}`
       ).then((res) => res.json());
       const newCurWeatherObject = curWeather(res1);
       setCurrentWeather(newCurWeatherObject);
+
+      //forecast weather
+      let res2 = await fetch(
+        `${api.base}forecast?q=${query}&appid=${api.key}`
+      ).then((res) => res.json());
+      const newForWeatherObject = forWeather(res2);
+      setForecastWeather(newForWeatherObject);
+
       setQuery("");
     } catch (error) {
       console.log(error);
@@ -59,6 +70,9 @@ const SearchSection = () => {
       </ContainerSearch>
       <ContainerDisplay>
         <CurrentWeather {...currentWeather} />
+      </ContainerDisplay>
+      <ContainerDisplay>
+        <ForecastWeather data={forecastWeather} />
       </ContainerDisplay>
     </Container>
   );

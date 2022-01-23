@@ -16,7 +16,7 @@ export const curWeather = (response) => {
   const { speed: windSpeed } = response.wind;
   const { country, sunrise, sunset } = response.sys;
 
-  const newWeatherObject = {
+  const newCurrentObject = {
     temp,
     maxTemp,
     minTemp,
@@ -29,10 +29,15 @@ export const curWeather = (response) => {
     sunrise,
     sunset,
   };
-  return newWeatherObject;
+  return newCurrentObject;
 };
 
 export const forWeather = (response) => {
-  const fiveDays = response.list.slice(1, 6);
-  return fiveDays;
+  const days = response.list;
+  const final = [];
+  for (let i = 0; i < 5; i++) {
+    const { temp_max: maxTemp, temp_min: minTemp } = days[i].main;
+    final.push({ maxTemp, minTemp });
+  }
+  return final;
 };

@@ -13,8 +13,6 @@ import cloudy from "../assets/cloudy.png";
 //STYLED COMPONENTS IMPORTS
 import {
   Container,
-  TopBanner,
-  BottomBanner,
   CardWrapper,
   Wrapper,
   Image,
@@ -22,11 +20,11 @@ import {
   TextHeader,
   TextSubtitle,
   Item,
+  DataHeader,
   DataContainer,
   Row,
   DateCom,
   CityCom,
-  ImageWrapper,
 } from "../components/styles/DisplayElements";
 
 const CurrentWeather = ({
@@ -100,55 +98,53 @@ const CurrentWeather = ({
   const sunsetStr = secToTime(sunset);
   return (
     <Container>
-      <TopBanner>
-        <CityCom>
-          {city}, {country}
-        </CityCom>
-        <DateCom>{date}</DateCom>
-      </TopBanner>
-      <BottomBanner>
-        <Wrapper>
-          <CardWrapper>
-            <ImageWrapper>
-              <Image src={icon} />
-            </ImageWrapper>
-            <Text>
-              <TextHeader>{`${Math.trunc(temp - 273)}℃`}</TextHeader>
-              <TextSubtitle>{type}</TextSubtitle>
-            </Text>
-          </CardWrapper>
-        </Wrapper>
-        <Wrapper>
-          <Row>
-            <Item>
-              Minimum Temperature
-              <DataContainer>{`${Math.trunc(minTemp - 273)}℃`}</DataContainer>
-            </Item>
-            <Item>
-              Humidity
-              <DataContainer> {`${humidity}%`}</DataContainer>
-            </Item>
-            <Item>
-              Sunrise Time
-              <DataContainer> {sunriseStr}</DataContainer>
-            </Item>
-          </Row>
-          <Row>
-            <Item>
-              Maximum Temperature
-              <DataContainer>{`${Math.trunc(maxTemp - 273)}℃`}</DataContainer>
-            </Item>
-            <Item>
-              Wind Speed
-              <DataContainer> {`${windSpeed}`}</DataContainer>
-            </Item>
-            <Item>
-              Sunset Time
-              <DataContainer> {sunsetStr}</DataContainer>
-            </Item>
-          </Row>
-        </Wrapper>
-      </BottomBanner>
+      <CityCom>
+        {city}, {country}
+      </CityCom>
+      <CardWrapper>
+        <Image src={icon} />
+        <Text>
+          <Text>
+            <TextHeader>{`${Number((temp - 273).toFixed(1))}℃`}</TextHeader>
+            <TextSubtitle>{type}</TextSubtitle>
+          </Text>
+          <DateCom>{date}</DateCom>
+        </Text>
+      </CardWrapper>
+      <Wrapper>
+        <Row>
+          <Item>
+            <DataHeader> Minimum Temperature</DataHeader>
+            <DataContainer>{`${Number(
+              (minTemp - 273).toFixed(1)
+            )}℃`}</DataContainer>
+          </Item>
+          <Item>
+            <DataHeader> Humidity</DataHeader>
+            <DataContainer> {`${humidity}%`}</DataContainer>
+          </Item>
+          <Item>
+            <DataHeader>Sunrise Time</DataHeader>
+            <DataContainer> {sunriseStr}</DataContainer>
+          </Item>
+        </Row>
+        <Row>
+          <Item>
+            <DataHeader>Maximum Temperature</DataHeader>
+            <DataContainer>{`${Number(
+              (maxTemp - 273).toFixed(1)
+            )}℃`}</DataContainer>
+          </Item>
+          <Item>
+            <DataHeader>Wind Speed</DataHeader>
+            <DataContainer> {`${windSpeed}`}</DataContainer>
+          </Item>
+          <Item>
+            <DataHeader>Sunset Time</DataHeader>
+            <DataContainer> {sunsetStr}</DataContainer>
+          </Item>
+        </Row>
+      </Wrapper>
     </Container>
   );
 };
