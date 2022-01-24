@@ -32,14 +32,14 @@ const SearchSection = () => {
     try {
       //current weather
       let res1 = await fetch(
-        `${api.base}weather?q=${query}&appid=${api.key}`
+        `${api.base}weather?q=${query}&units=metric&appid=${api.key}`
       ).then((res) => res.json());
       const newCurWeatherObject = curWeather(res1);
       setCurrentWeather(newCurWeatherObject);
 
       //forecast weather
       let res2 = await fetch(
-        `${api.base}forecast?q=${query}&appid=${api.key}`
+        `${api.base}forecast?q=${query}&units=metric&appid=${api.key}`
       ).then((res) => res.json());
       const newForWeatherObject = forWeather(res2);
       setForecastWeather(newForWeatherObject);

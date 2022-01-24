@@ -27,6 +27,9 @@ import {
   CityCom,
 } from "../components/styles/DisplayElements";
 
+//Utils import
+import { days, months, secToTime } from "./utils/utils";
+
 const CurrentWeather = ({
   temp,
   maxTemp,
@@ -58,44 +61,15 @@ const CurrentWeather = ({
   } else {
     icon = fog;
   }
+
   //Data Reformatting
-  const secToTime = (sec) => {
-    let time = sec;
-    let date = new Date(time * 1000);
-    return `${date.getHours()}:${date.getMinutes()}`;
-  };
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "Nocvember",
-    "December",
-  ];
-
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
   const currentDate = new Date();
   const date = `${days[currentDate.getDay()]}, ${currentDate.getDate()} ${
     months[currentDate.getMonth()]
   }`;
   const sunriseStr = secToTime(sunrise);
   const sunsetStr = secToTime(sunset);
+
   return (
     <Container>
       <CityCom>
@@ -105,7 +79,7 @@ const CurrentWeather = ({
         <Image src={icon} />
         <Text>
           <Text>
-            <TextHeader>{`${Number((temp - 273).toFixed(1))}℃`}</TextHeader>
+            <TextHeader>{`${Number(temp).toFixed(1)}℃`}</TextHeader>
             <TextSubtitle>{type}</TextSubtitle>
           </Text>
           <DateCom>{date}</DateCom>
@@ -115,9 +89,7 @@ const CurrentWeather = ({
         <Row>
           <Item>
             <DataHeader> Minimum Temperature</DataHeader>
-            <DataContainer>{`${Number(
-              (minTemp - 273).toFixed(1)
-            )}℃`}</DataContainer>
+            <DataContainer>{`${Number(minTemp).toFixed(2)}℃`}</DataContainer>
           </Item>
           <Item>
             <DataHeader> Humidity</DataHeader>
@@ -131,9 +103,7 @@ const CurrentWeather = ({
         <Row>
           <Item>
             <DataHeader>Maximum Temperature</DataHeader>
-            <DataContainer>{`${Number(
-              (maxTemp - 273).toFixed(1)
-            )}℃`}</DataContainer>
+            <DataContainer>{`${Number(maxTemp).toFixed(2)}℃`}</DataContainer>
           </Item>
           <Item>
             <DataHeader>Wind Speed</DataHeader>

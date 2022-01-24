@@ -35,9 +35,10 @@ export const curWeather = (response) => {
 export const forWeather = (response) => {
   const days = response.list;
   const final = [];
-  for (let i = 0; i < 5; i++) {
-    const { temp_max: maxTemp, temp_min: minTemp } = days[i].main;
-    final.push({ maxTemp, minTemp });
+  for (let i = 0; i < 40; i = i + 7) {
+    const { feels_like: feelTemp } = days[i].main;
+    const { main: type } = days[i].weather[0];
+    final.push({ feelTemp, type });
   }
   return final;
 };
