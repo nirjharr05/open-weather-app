@@ -34,11 +34,8 @@ export const CardWrapper = styled.div`
   justify-content: center;
   background-color: #f0f8fa;
   height: 450px;
-  width: 50%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  width: 40%;
+  border-radius: 10px;
 `;
 
 export const Image = styled.img`
